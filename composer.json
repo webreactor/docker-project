@@ -1,0 +1,19 @@
+{
+    "name": "docker-project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "DockerProject\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/webreactor/cli-arguments.git"
+        }
+    ],
+    "require": {
+        "symfony/yaml": "v2.7.3",
+        "webreactor/cli-arguments": "dev-master"
+    }
+}
