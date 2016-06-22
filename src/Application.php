@@ -20,22 +20,24 @@ class Application {
         }
     }
 
-    public function runUpdateCommand($config) {
+    public function runUpdate($config_file) {
+        $config = $this->loadComposeConfig($config_file);
         foreach ($config['services'] as $service_name => $service) {
-            if (isset($service['labels']['PROJECT_GIT'])) {
-                $git_link = $service['labels']['PROJECT_GIT'];
+            if (isset($service['labels']['project.git'])) {
+                $git_link = $service['labels']['project.git'];
                 $branch = 'master';
-                if (isset($service['labels']['PROJECT_GIT_BRANCH'])) {
-                    $branch = $service['labels']['PROJECT_GIT_BRANCH'];
+                if (isset($service['labels']['project.git.branch'])) {
+                    $branch = $service['labels']['project.git.branch'];
                 }
                 $this->gitUpdate($service, $git_link, $branch);
             }
         }
     }
 
-    public function runShellCommand($command, $extra, $config) {
+    public function runShell($command, $extra, $config_file) {
+        $config = $this->loadComposeConfig($config_file);
         if (empty($extra)) {
-            throw new \Exception("--extra is necessary parameter", 1);
+            throw new \Exception("--extra is a necessary parameter", 1);
         }
         foreach ($config['services'] as $service_name => $service) {
             if (!empty($service['_app_dir'])) {
@@ -44,8 +46,9 @@ class Application {
         }
     }
 
-    public function runProjectCommand($command, $extra, $config) {
-        $key = strtoupper("PROJECT_{$command}");
+    public function runProject($command, $extra, $config_file) {
+        $config = $this->loadComposeConfig($config_file);
+        $key = strtolower("project.{$command}");
         foreach ($config['services'] as $service_name => $service) {
             if (isset($service['labels'][$key])) {
                 $command = trim($service['labels'][$key].' '.$extra);
@@ -85,8 +88,8 @@ class Application {
 
     public function parseAppDirs($config) {
         foreach ($config['services'] as $service_name => $service) {
-            if (isset($service['labels']['PROJECT_GIT'])) {
-                $git_link = $service['labels']['PROJECT_GIT'];
+            if (isset($service['labels']['project.git'])) {
+                $git_link = $service['labels']['project.git'];
                 preg_match('/\b([\w\-]+\/[\w\-]+)\.git/', $git_link, $match);
                 $dir = Utilities::normalizeDir($match[1], $this->apps_dir);
             } elseif (isset($service['build'])) {

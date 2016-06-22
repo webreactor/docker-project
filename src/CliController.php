@@ -17,20 +17,22 @@ class CliController {
     public function handle($arguments_container) {
         $arguments = $this->parseArguments($arguments_container);
         $this->app->initAppsDir($arguments['apps-dir']);
-        $config = $this->app->loadComposeConfig($arguments['composer-file']);
         try {
             switch ($arguments['command']) {
                 case 'update':
-                    $this->app->RunUpdateCommand($config, $arguments['apps-dir']);
+                    $this->app->RunUpdate($arguments['composer-file'], $arguments['apps-dir']);
                 break;
                 case 'shell':
-                    $this->app->RunShellCommand($arguments['command'], $arguments['extra'], $config);
+                    $this->app->RunShell($arguments['command'], $arguments['extra'], $arguments['composer-file']);
+                break;
+                case 'status':
+                    $this->printStatus($arguments['composer-file'], $arguments);
                 break;
                 case 'help':
-                    $this->help($arguments_container);
+                    $this->printHelp($arguments_container);
                 break;
                 default:
-                    $this->app->RunProjectCommand($arguments['command'], $arguments['extra'], $config);
+                    $this->app->RunProject($arguments['command'], $arguments['extra'], $arguments['composer-file']);
             };
         } catch (\Exception $e) {
             echo "Error: ".$e->getMessage()."\n";
@@ -55,13 +57,13 @@ class CliController {
 
     public function defineArguments($arguments) {
         $arguments->addDefinition('file', 'f', 'docker-compose.yml', false, 'Alternative config file');
-        $arguments->addDefinition('apps', 'a', 'apps', false, 'apps folder realtive to te compose file');
+        $arguments->addDefinition('apps', 'a', 'apps', false, 'apps folder realtive to the compose file');
         $arguments->addDefinition('extra', 'x', '', false, 'Extra parameters passed to command');
         $arguments->addDefinition('_words_', '', null, true, 'command');
         return $arguments;
     }
 
-    public function help($arguments) {
+    public function printHelp($arguments) {
         echo "docker project management tool {$this->app->version}\n";
         echo "\nUsage:\n";
         echo "  docker-project <command> <arguments>\n";
@@ -85,6 +87,29 @@ class CliController {
             }
         }
         echo "\n";
+    }
+
+    public function printStatus($config_file, $arguments) {
+        $config = $this->app->loadComposeConfig($config_file);
+        echo "Compose file: {$arguments['composer-file']}\n";
+        echo "Apps folder:  {$arguments['apps-dir']}\n";
+        if (!empty($arguments['extra'])) {
+            echo "Extra parameters: {$arguments['extra']}\n";
+        }
+        echo "\nRegistered services\n";
+        foreach ($config['services'] as $service_name => $service) {
+            if (isset($service['_app_dir'])) {
+                echo "$service_name:\n";
+                echo "  Application folder: {$service['_app_dir']}\n";
+                foreach ($service['labels'] as $key => $value) {
+                    if (preg_match('/project.(.+)/', $key, $match)) {
+                        $name = ucfirst($match[1]);
+                        echo "  {$name}: $value\n";
+                    }
+                }
+                echo "\n";
+            }
+        }
     }
 
 }
