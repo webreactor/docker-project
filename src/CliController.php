@@ -70,6 +70,7 @@ class CliController {
         echo "\nCommands:\n";
         echo "  update - clones or pulls application source\n";
         echo "  shell - uses extra parameter to run shell command for each app\n";
+        echo "  status - prints current recogniser services with repos and their commands\n";
         echo "  help - prints help\n";
         echo "  your_command - defined as label for the service (example: labels: PROJECT_TEST: make test)\n";
         echo "\nArguments:\n";

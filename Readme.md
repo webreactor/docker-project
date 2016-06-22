@@ -66,8 +66,8 @@ docker-project build -x dev
 # runs 'make dev' at apps/vendor/users
 # -x add anything to the end of command
 
-docker-project build
-# since repo alredy exists runs just 'git pull'
+docker-project update
+# since repo alredy exists it runs just 'git pull'
 
 docker-project custom
 # runs `echo vendor/users`
@@ -76,8 +76,6 @@ docker-project shell -x git checkout master
 # runs `git checkout master` over all registered repos
 
 ```
-
-
 
 
 ### `docker-project help` output:
@@ -91,6 +89,7 @@ Usage:
 Commands:
   update - clones or pulls application source
   shell - uses extra parameter to run shell command for each app
+  status - prints current recogniser services with repos and their commands
   help - prints help
   your_command - defined as label for the service (example: labels: PROJECT_TEST: make test)
 
@@ -100,5 +99,4 @@ Arguments:
   --file             -f      docker-compose.yml Alternative config file
   --apps             -a      apps               apps folder realtive to the compose file
   --extra            -x                         Extra parameters passed to command
-
 ```
