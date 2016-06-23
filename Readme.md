@@ -26,7 +26,7 @@ Build docker appplication sometimes is not just a matter of running `docker buil
 
 Using [labels](https://docs.docker.com/v1.8/compose/yml/#labels) you can define metadata for any service in docker-compose.yml.
 
-When git repo link, branch, build and other commands are specisied as labels for a service, docker-project will parce out that information and will be able do git clone or pull for each defined repo and run command over repositories.
+When git repo link, branch, build and other commands are specified as labels for a service, docker-project will parce out that information and will be able do git clone or pull for each defined repo and run command over repositories.
 
 `docker-project` is able to run commands only over repos that have project_git label or build path.
 
