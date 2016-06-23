@@ -52,6 +52,11 @@ services:
             project.build: make                                 # defining build command
             project.custom: echo __image__                      # defining custom command
 ```
+
+Meta tags can be used in commands definitions as well as extra (`-x`) parameter string:
+* `__image__`   - image name
+* `__service__` - service name
+
 ### Usage
 
 ```bash
