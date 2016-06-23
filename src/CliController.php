@@ -15,29 +15,44 @@ class CliController {
     }
 
     public function handle($arguments_container) {
-        $arguments = $this->parseArguments($arguments_container);
-        $this->app->initAppsDir($arguments['apps-dir']);
         try {
-            switch ($arguments['command']) {
-                case 'update':
-                    $this->app->RunUpdate($arguments['composer-file'], $arguments['apps-dir']);
-                break;
-                case 'shell':
-                    $this->app->RunShell($arguments['command'], $arguments['extra'], $arguments['composer-file']);
-                break;
-                case 'status':
-                    $this->printStatus($arguments['composer-file'], $arguments);
-                break;
-                case 'help':
-                    $this->printHelp($arguments_container);
-                break;
-                default:
-                    $this->app->RunProject($arguments['command'], $arguments['extra'], $arguments['composer-file']);
-            };
+            $this->handleLogic($arguments_container);
         } catch (\Exception $e) {
-            echo "Error: ".$e->getMessage()."\n";
+            echo "Error: ".$e->getMessage()."\n\n";
             exit(1);
         }
+    }
+
+    public function handleLogic($arguments_container) {
+        $arguments = $this->parseArguments($arguments_container);
+        $this->app->initAppsDir($arguments['apps-dir']);
+        switch ($arguments['command']) {
+            case 'help':
+                $this->printHelp($arguments_container);
+            break;
+            case 'update':
+                $this->app->loadComposeFile($arguments['composer-file']);
+                $this->app->runUpdate($arguments['extra']);
+            break;
+            case 'shell':
+                $this->app->loadComposeFile($arguments['composer-file']);
+                $this->app->runShell(
+                    $arguments['command'],
+                    $arguments['extra']
+                );
+            break;
+            case 'status':
+                $this->app->loadComposeFile($arguments['composer-file']);
+                $this->printStatus($arguments);
+            break;
+            default:
+                $this->app->loadComposeFile($arguments['composer-file']);
+                $this->app->runProjectCommand(
+                    $arguments['command'],
+                    $arguments['extra']
+                );
+        };
+
     }
 
     public function parseArguments($arguments_container) {
@@ -90,26 +105,24 @@ class CliController {
         echo "\n";
     }
 
-    public function printStatus($config_file, $arguments) {
-        $config = $this->app->loadComposeConfig($config_file);
+    public function printStatus($arguments) {
         echo "Compose file: {$arguments['composer-file']}\n";
         echo "Apps folder:  {$arguments['apps-dir']}\n";
         if (!empty($arguments['extra'])) {
             echo "Extra parameters: {$arguments['extra']}\n";
         }
         echo "\nRegistered services\n";
-        foreach ($config['services'] as $service_name => $service) {
-            if (isset($service['_app_dir'])) {
-                echo "$service_name:\n";
-                echo "  Application folder: {$service['_app_dir']}\n";
-                foreach ($service['labels'] as $key => $value) {
-                    if (preg_match('/project.(.+)/', $key, $match)) {
-                        $name = ucfirst($match[1]);
-                        echo "  {$name}: $value\n";
-                    }
+        foreach ($this->app->apps as $service_name => $app_dir) {
+            echo "$service_name:\n";
+            echo "  Application folder: {$app_dir}\n";
+            $service = $this->app->compose->getService($service_name);
+            foreach ($service['labels'] as $key => $value) {
+                if (preg_match('/project.(.+)/', $key, $match)) {
+                    $name = ucfirst($match[1]);
+                    echo "  {$name}: $value\n";
                 }
-                echo "\n";
             }
+            echo "\n";
         }
     }
 
