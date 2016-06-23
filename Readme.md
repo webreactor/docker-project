@@ -10,28 +10,28 @@ Helps to work with multiple git repositories and set custom build image process 
 
 git clone or pull for each microservice is a pain.
 
-Let's say you have microservice application wich contains 5 microservices.
-Each microservice is a small aplication on it's own, so you have 5 different git repositories for them.
-Docker-compose is used to tight and make work it all toghether.
-That means when you start work with the whole application you need to do `git clone` 5 times with proper parameters to a proper destination and so on. If you work in a team time to time you will need do `git pull` 5 times. Git submodules are not convinient thing to use in this case.
+Let's say you have a microservice application which contains 5 microservices.
+Each microservice is a small application on it's own, so you have 5 different git repositories for them.
+Docker-compose is used tightly to make it all work together.
+This means when you start work with the whole application, you will need to do `git clone` 5 times with proper parameters to a proper destination and so on. If you work in a team time to time you will need to do `git pull` 5 times. Git submodules are not convinient thing to use in this case.
 
 **Case 2**
 
 Custom build image process
 
-Build docker appplication sometimes is not just a matter of running `docker build`. There are no need to bring havy development tools inside of you image on order bus build application. You spit the process in two phases - building and packing in image. You will have bash script or Makefile, so you need to store somewhere a command to build image and be able to build all microservices in single call.
+Building docker appplications sometimes is not just a matter of running `docker build`. There is no need to bring heavy development tools inside of your image in order to build applications. You split the process in two phases - building and packing in the image. You will have bash script or Makefile, so you need to store somewhere a command to build the image and be able to build all microservices in single call.
 
 
 ### How it works
 
 Using [labels](https://docs.docker.com/v1.8/compose/yml/#labels) you can define metadata for any service in docker-compose.yml.
 
-When git repo link, branch, build and other commands are specified as labels for a service, docker-project will parce out that information and will be able do git clone or pull for each defined repo and run command over repositories.
+Where git repo link, branch, build and other commands are specified as labels for a service, docker-project will parse out that information and will be able to git clone or pull for each defined repo and run commands over the repositories.
 
 `docker-project` is able to run commands only over repos that have project_git label or build path.
 
 
-Be default `docker-project` creates apps folder next to docker-compose.yml file. That path can be changes using parameter -a.
+By default `docker-project` creates apps folder next to docker-compose.yml file. That path can be changes using parameter -a.
 
 
 
