@@ -109,7 +109,7 @@ Arguments:
 ### Install binary
 
 ```bash
-curl -O https://github.com/webreactor/docker-project/releases/download/0.0.1-alfa/docker-project
+curl -O -L https://github.com/webreactor/docker-project/releases/download/0.0.1-alfa/docker-project
 chmod a+x docker-project
 sudo cp docker-project /usr/local/bin/
 ```
