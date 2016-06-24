@@ -62,12 +62,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/webreactor/cli-arguments.git",
-                "reference": "55e33ad6944ca410f45e2089f09782fcedfdf2a4"
+                "reference": "8a4d667f904d5b30c3051386fdd5f4c9d7acef8b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webreactor/cli-arguments/zipball/55e33ad6944ca410f45e2089f09782fcedfdf2a4",
-                "reference": "55e33ad6944ca410f45e2089f09782fcedfdf2a4",
+                "url": "https://api.github.com/repos/webreactor/cli-arguments/zipball/8a4d667f904d5b30c3051386fdd5f4c9d7acef8b",
+                "reference": "8a4d667f904d5b30c3051386fdd5f4c9d7acef8b",
                 "shasum": ""
             },
             "type": "library",
@@ -83,7 +83,7 @@
                 "source": "https://github.com/webreactor/cli-arguments/tree/master",
                 "issues": "https://github.com/webreactor/cli-arguments/issues"
             },
-            "time": "2016-06-15 03:42:59"
+            "time": "2016-06-24 02:12:07"
         }
     ],
     "packages-dev": [],

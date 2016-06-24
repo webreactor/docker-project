@@ -2,7 +2,8 @@
 
 namespace DockerProject;
 
-use Symfony\Component\Yaml\Yaml;
+use \Symfony\Component\Yaml\Yaml;
+use \Webreactor\CliArguments\ArgumentDefinition;
 
 class CliController {
  
@@ -52,7 +53,6 @@ class CliController {
                     $arguments['extra']
                 );
         };
-
     }
 
     public function parseArguments($arguments_container) {
@@ -71,10 +71,10 @@ class CliController {
     }
 
     public function defineArguments($arguments) {
-        $arguments->addDefinition('file', 'f', 'docker-compose.yml', false, 'Alternative config file');
-        $arguments->addDefinition('apps', 'a', 'apps', false, 'apps folder realtive to the compose file');
-        $arguments->addDefinition('extra', 'x', '', false, 'Extra parameters passed to command');
-        $arguments->addDefinition('_words_', '', null, true, 'command');
+        $arguments->addDefinition(new ArgumentDefinition('file', 'f', 'docker-compose.yml', false, false, 'Alternative config file'));
+        $arguments->addDefinition(new ArgumentDefinition('apps', 'a', 'apps', false, false, 'apps folder realtive to the compose file'));
+        $arguments->addDefinition(new ArgumentDefinition('extra', 'x', '', false, false, 'Extra parameters passed to command'));
+        $arguments->addDefinition(new ArgumentDefinition('_words_', '', '', false, true, 'command'));
         return $arguments;
     }
 
@@ -87,18 +87,18 @@ class CliController {
         echo "  shell - uses extra parameter to run shell command for each app\n";
         echo "  status - prints current recogniser services with repos and their commands\n";
         echo "  help - prints help\n";
-        echo "  your_command - defined as label for the service (example: labels: PROJECT_TEST: make test)\n";
+        echo "  your_command - defined as label for the service (example: labels: project.test: make test)\n";
         echo "\nArguments:\n";
-        echo "  Full name        | Short | Default          | Note\n";
-        echo "-----------------------------------------------------\n";
+        echo "  Full name    | Short | Default            | Note\n";
+        echo "-------------------------------------------------------\n";
 
         foreach ($arguments->definitions as $key => $definition) {
             if ($key != '_words_') {
-                echo sprintf("  --%-16s -%-6s %-18s %s\n",
-                    $definition['name'],
-                    $definition['short_name'],
-                    $definition['default'],
-                    $definition['description']
+                echo sprintf("  --%-12s -%-6s %-20s %s\n",
+                    $definition->name,
+                    $definition->short,
+                    $definition->default,
+                    $definition->description
                 );
             }
         }

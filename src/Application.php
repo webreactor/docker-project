@@ -2,7 +2,7 @@
 
 namespace DockerProject;
 
-use Symfony\Component\Yaml\Yaml;
+use \Symfony\Component\Yaml\Yaml;
 
 class Application {
 
