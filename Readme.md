@@ -105,3 +105,30 @@ Arguments:
   --apps             -a      apps               apps folder realtive to the compose file
   --extra            -x                         Extra parameters passed to command
 ```
+
+### Install binary
+
+```bash
+curl -O https://github.com/webreactor/docker-project/releases/download/0.0.1-alfa/docker-project
+chmod a+x docker-project
+sudo cp docker-project /usr/local/bin/
+```
+
+Depenencies:
+
+*php5-cli
+
+### Build and install manually
+
+```
+git clone https://github.com/webreactor/docker-project.git
+make
+sudo make install
+```
+
+Depenencies:
+
+* php5-cli
+* php composer
+* make
+* php.ini phar.readonly = off
