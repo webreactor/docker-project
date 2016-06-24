@@ -75,6 +75,7 @@ class CliController {
         $arguments->addDefinition(new ArgumentDefinition('apps', 'a', 'apps', false, false, 'apps folder realtive to the compose file'));
         $arguments->addDefinition(new ArgumentDefinition('extra', 'x', '', false, false, 'Extra parameters passed to command'));
         $arguments->addDefinition(new ArgumentDefinition('_words_', '', '', false, true, 'command'));
+        $arguments->parse();
         return $arguments;
     }
 
