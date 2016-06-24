@@ -6,7 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class Application {
 
-    public $version = '0.0.1';
+    public $version = '0.0.1-alfa';
     public $apps_dir;
     public $tpl;
     public $compose;
