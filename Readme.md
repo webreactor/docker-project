@@ -102,7 +102,7 @@ Arguments:
   Full name        | Short | Default          | Note
 -----------------------------------------------------
   --file             -f      docker-compose.yml Alternative config file
-  --apps             -a      apps               apps folder realtive to the compose file
+  --apps             -a      apps               Applications sources folder
   --extra            -x                         Extra parameters passed to command
 ```
 

@@ -59,7 +59,7 @@ class CliController {
         $this->defineArguments($arguments_container);
         $arguments = array();
         $arguments['composer-file'] = Utilities::normalizePath($arguments_container->get('file'), $this->pwd);
-        $arguments['apps-dir'] = Utilities::normalizeDir($arguments_container->get('apps'), dirname($arguments['composer-file']));
+        $arguments['apps-dir'] = Utilities::normalizeDir($arguments_container->get('apps'), $this->pwd);
 
         $_cli_words = $arguments_container->get('_words_');
         if (!isset($_cli_words[1])) {
@@ -72,7 +72,7 @@ class CliController {
 
     public function defineArguments($arguments) {
         $arguments->addDefinition(new ArgumentDefinition('file', 'f', 'docker-compose.yml', false, false, 'Alternative config file'));
-        $arguments->addDefinition(new ArgumentDefinition('apps', 'a', 'apps', false, false, 'apps folder realtive to the compose file'));
+        $arguments->addDefinition(new ArgumentDefinition('apps', 'a', 'apps', false, false, 'Applications sources folder'));
         $arguments->addDefinition(new ArgumentDefinition('extra', 'x', '', false, false, 'Extra parameters passed to command'));
         $arguments->addDefinition(new ArgumentDefinition('_words_', '', '', false, true, 'command'));
         $arguments->parse();
