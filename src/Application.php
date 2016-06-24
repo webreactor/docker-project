@@ -1,8 +1,8 @@
 <?php
 
-namespace DockerProject;
+namespace Reactor\DockerProject;
 
-use \Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Yaml;
 
 class Application {
 

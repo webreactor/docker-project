@@ -1,6 +1,6 @@
 <?php
 
-namespace DockerProject;
+namespace Reactor\DockerProject;
 
 class DockerComposeConfig {
 

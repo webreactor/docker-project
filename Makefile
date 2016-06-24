@@ -4,7 +4,7 @@ build: vendor
 	chmod a+x $(BIN_NAME)
 
 vendor:
-	composer install --no-dev
+	composer install --no-dev --optimize-autoloader
 
 clean:
 	-rm $(BIN_NAME)

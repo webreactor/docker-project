@@ -3,7 +3,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "DockerProject\\": "src/"
+            "Reactor\\DockerProject\\": "src/"
         }
     },
     "repositories": [

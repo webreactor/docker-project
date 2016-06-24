@@ -1,9 +1,9 @@
 <?php
 
-namespace DockerProject;
+namespace Reactor\DockerProject;
 
-use \Symfony\Component\Yaml\Yaml;
-use \Webreactor\CliArguments\ArgumentDefinition;
+use Symfony\Component\Yaml\Yaml;
+use Reactor\CliArguments\ArgumentDefinition;
 
 class CliController {
  

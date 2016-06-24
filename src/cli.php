@@ -1,7 +1,7 @@
 <?php
-namespace DockerProject;
+namespace Reactor\DockerProject;
 
-use \Webreactor\CliArguments\ArgumentsParser;
+use Reactor\CliArguments\ArgumentsParser;
 
 include __dir__.'/../vendor/autoload.php';
 
