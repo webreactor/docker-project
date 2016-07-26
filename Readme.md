@@ -94,7 +94,7 @@ Usage:
 Commands:
   update - clones or pulls application source
   shell - uses extra parameter to run shell command for each app
-  status - prints current registered services with repos and their commands
+  status - prints current services with repos and their commands
   help - prints help
   your_command - defined as label for the service (example: labels: PROJECT_TEST: make test)
 
