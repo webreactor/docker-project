@@ -126,7 +126,7 @@ make
 sudo make install
 ```
 
-Depenencies:
+Depenencies for build:
 
 * php5-cli
 * php composer
