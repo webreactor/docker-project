@@ -6,7 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class Application {
 
-    public $version = '0.0.1-alfa';
+    public $version = '0.0.2';
     public $apps_dir;
     public $tpl;
     public $compose;
@@ -20,7 +20,7 @@ class Application {
     public function initAppsDir($path) {
         $this->apps_dir = $path;
         if (!is_dir($path)) {
-            mkdir($path, 0766, true);
+            mkdir($path, 0775, true);
         }
     }
 
