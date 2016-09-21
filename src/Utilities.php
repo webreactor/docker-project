@@ -12,7 +12,7 @@ class Utilities {
         $_save_path = false;
         if ($path !== '') {
             $_save_path = getcwd();
-            @mkdir($path, 0766, true);
+            @mkdir($path, 0775, true);
             chdir($path);
         }
         passthru($cmd, $rez);
