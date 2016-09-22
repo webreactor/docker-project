@@ -50,7 +50,8 @@ services:
             project.git: https://github.com/vendor/users.git    # linking git repo
             project.git.branch: cool-feature                    # custom branch, default is master
             project.build: make                                 # defining build command
-            project.custom: echo __image__                      # defining custom command
+            project.custom1: echo __image__                      # defining custom1 command
+            project.custom2: echo __image__                      # defining custom2 command
 ```
 
 Meta tags can be used in commands definitions as well as extra (`-x`) parameter string:
@@ -86,7 +87,7 @@ docker-project shell -x git checkout master
 ### `docker-project help` output:
 
 ```
-docker project management tool 0.0.1
+docker project management tool 0.0.2
 
 Usage:
   docker-project <command> <arguments>
@@ -96,7 +97,7 @@ Commands:
   shell - uses extra parameter to run shell command for each app
   status - prints current services with repos and their commands
   help - prints help
-  your_command - defined as label for the service (example: labels: PROJECT_TEST: make test)
+  your_command - defined as label for the service (example: labels: project.test: make test)
 
 Arguments:
   Full name        | Short | Default          | Note
