@@ -112,7 +112,7 @@ Arguments:
 ```bash
 curl -O -L https://github.com/webreactor/docker-project/releases/download/0.0.3/docker-project
 chmod a+x docker-project
-sudo cp docker-project /usr/local/bin/
+sudo mv docker-project /usr/local/bin/
 ```
 
 Depenencies:
