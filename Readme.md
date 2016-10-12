@@ -87,7 +87,7 @@ docker-project shell -x git checkout master
 ### `docker-project help` output:
 
 ```
-docker project management tool 0.0.2
+docker project management tool 0.0.3
 
 Usage:
   docker-project <command> <arguments>
@@ -110,7 +110,7 @@ Arguments:
 ### Install binary
 
 ```bash
-curl -O -L https://github.com/webreactor/docker-project/releases/download/0.0.2/docker-project
+curl -O -L https://github.com/webreactor/docker-project/releases/download/0.0.3/docker-project
 chmod a+x docker-project
 sudo cp docker-project /usr/local/bin/
 ```

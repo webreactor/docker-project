@@ -6,7 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 
 class Application {
 
-    public $version = '0.0.2';
+    public $version = '0.0.3';
     public $apps_dir;
     public $tpl;
     public $compose;
@@ -17,11 +17,8 @@ class Application {
         $this->compose = new DockerComposeConfig();
     }
 
-    public function initAppsDir($path) {
+    public function setAppsDir($path) {
         $this->apps_dir = $path;
-        if (!is_dir($path)) {
-            mkdir($path, 0775, true);
-        }
     }
 
     public function loadComposeFile($file) {
@@ -30,6 +27,9 @@ class Application {
     }
 
     public function runUpdate($extra) {
+        if (!is_dir($this->apps_dir)) {
+            mkdir($this->apps_dir, 0775, true);
+        }
         foreach ($this->apps as $service_name => $app_dir) {
             $service = $this->compose->getService($service_name);
             if (isset($service['labels']['project.git'])) {

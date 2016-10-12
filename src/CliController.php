@@ -26,7 +26,7 @@ class CliController {
 
     public function handleLogic($arguments_container) {
         $arguments = $this->parseArguments($arguments_container);
-        $this->app->initAppsDir($arguments['apps-dir']);
+        $this->app->setAppsDir($arguments['apps-dir']);
         switch ($arguments['command']) {
             case 'help':
                 $this->printHelp($arguments_container);
