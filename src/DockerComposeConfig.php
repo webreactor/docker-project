@@ -25,8 +25,8 @@ class DockerComposeConfig {
 
     public function loadFile($file) {
         $config = Utilities::loadYMLFile($file);
-        if (!(isset($config['version']) && $config['version'] === '2')) {
-            throw new \Exception("Supports only docker-compose.yml version 2", 1);
+        if (!(isset($config['version']) && $config['version'] >= 2)) {
+            throw new \Exception("Supports only docker-compose.yml version 2 or above", 1);
         }
         $config['_source'] = $file;
         if (!isset($config['services'])) {
