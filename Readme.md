@@ -37,7 +37,7 @@ By default `docker-project` creates apps folder next to docker-compose.yml file.
 
 ### Specification
 
-Works with docker-compose.yml version 2 only
+Works with docker-compose.yml version 2+
 
 ```yml
 version: "2"
