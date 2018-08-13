@@ -77,7 +77,7 @@ class Application {
             $dir = null;
             if (isset($service['labels']['project.git'])) {
                 $git_link = $service['labels']['project.git'];
-                preg_match('/\b([\w\-]+\/[\w\-]+)\.git/', $git_link, $match);
+                preg_match('/\b([\w\-]+\/?[\w\-]+)\.git/', $git_link, $match);
                 $dir = Utilities::normalizeDir($match[1], $this->apps_dir);
             } elseif (isset($service['build'])) {
                 $dir = Utilities::normalizeDir($service['build'], dirname($service['_source']));
