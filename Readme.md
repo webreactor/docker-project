@@ -117,7 +117,7 @@ sudo mv docker-project /usr/local/bin/
 
 Depenencies:
 
-*php5-cli
+*php-cli
 
 ### Build and install manually
 
@@ -129,7 +129,7 @@ sudo make install
 
 Depenencies for build:
 
-* php5-cli
+* php-cli
 * php composer
 * make
 * php.ini phar.readonly = off
