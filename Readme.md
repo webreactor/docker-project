@@ -3,8 +3,11 @@ Docker Project Management
 
 Helps to work with multiple git repositories and set custom build image process using docker-compose.yml
 
-
 ### Why do I need it?
+
+Modern services is a swarm of different interconnected micro-services where each micro-service is stored at individual repo.
+It can take a lot of time to setup this kind of environment.
+Docker-project helps to work with docker app stored in multiple git repositories and set custom build image process via docker-compose.yml
 
 **Case 1**
 
