@@ -1,5 +1,5 @@
 {
-    "name": "docker/project",
+    "name": "webreactor/docker-project",
     "license": "MIT",
     "autoload": {
         "psr-4": {
