@@ -1,5 +1,5 @@
 {
-    "name": "docker-project",
+    "name": "docker/project",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "symfony/yaml": "v2.7.3",
+        "symfony/yaml": "v3.4.47" ,
         "webreactor/cli-arguments": "dev-master"
     }
 }
